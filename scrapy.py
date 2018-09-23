@@ -32,8 +32,30 @@ def is_good_response(resp):
             and content_type.find('html') > -1)
 
 
-def log_error(e)
+def log_error(e):
     """log errors. be smart"""
 
     print(e)
+
+
+def get_names():
+    """Get names of mathematicians from url, list with strings of names, one per mathematician"""
+
+    url = 'http://www.fabpedigree.com/james/mathmen.htm'
+    response = simple_get(url)
+
+    if response is not None:
+        html = BeautifulSoup(response, 'html.parser')
+        names = set()
+
+        for li in html.select('li'):
+            for name in li.text.split('\n'):
+                if len(name) > 0:
+                    names.add(name.strip())
+
+        return list(names)
+
+    # raise exception if we failed to extract any datapyth
+    raise Exception('Error. Failes to extract data from {} '.format(url))
+
 
