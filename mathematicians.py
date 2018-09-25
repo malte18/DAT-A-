@@ -55,7 +55,7 @@ def get_names():
 
         return list(names)
 
-    # raise exception if we failed to extract any datapyth
+    # raise exception if we failed to extract any data
     raise Exception('Error. Failes to extract data from {} '.format(url))
 
 
